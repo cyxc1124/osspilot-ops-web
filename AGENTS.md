@@ -4,15 +4,27 @@
 
 ## 提交
 
-Conventional Commits：`<type>: <中文说明>`。必须保留 type 前缀，包括 `ci:`、`chore:`。
+`<type>: <中文说明>`，可加范围：`feat(auth): ...`。必须保留 type 前缀，不要只写中文。
+
+- `feat` 新功能
+- `fix` 修缺陷
+- `docs` 文档
+- `style` 格式（不影响行为）
+- `refactor` 重构
+- `perf` 性能
+- `test` 测试
+- `build` 构建与依赖
+- `ci` CI / 工作流
+- `chore` 脚手架、杂项
+- `revert` 回滚
 
 ```
 feat: 登录后强制跳转修改密码
+fix: 关闭弹窗时清掉选中账号
+docs: 扩充提交前缀
 ci: 拆分检查并推镜像到 GHCR
 chore: 从 monorepo 拆出本仓
 ```
-
-不要只写中文、丢掉前缀。
 
 ## 实现
 
