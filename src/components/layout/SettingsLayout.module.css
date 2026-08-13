@@ -1,0 +1,27 @@
+.layout {
+  display: flex;
+  min-height: 400px;
+  overflow: hidden;
+  border: 1px solid #e4e8ef;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.subNav {
+  flex-shrink: 0;
+  width: 220px;
+  padding: 16px 12px;
+  border-right: 1px solid #e4e8ef;
+  background: #f8fafc;
+}
+
+.menu {
+  border-inline-end: none !important;
+  background: transparent !important;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+  padding: 24px 28px;
+}

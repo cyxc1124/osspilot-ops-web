@@ -1,0 +1,33 @@
+.page {
+  max-width: 1280px;
+}
+
+.header {
+  margin-bottom: 24px;
+}
+
+.title {
+  margin: 0 0 4px !important;
+  font-weight: 600 !important;
+}
+
+.subtitle {
+  margin: 0 !important;
+  font-size: 14px;
+}
+
+.statCard {
+  border: 1px solid #e4e8ef;
+  border-radius: 12px;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.statCard:hover {
+  border-color: #d0d7e2;
+  box-shadow: 0 4px 12px -2px rgb(15 23 42 / 8%);
+}
+
+.sectionCard {
+  border: 1px solid #e4e8ef;
+  border-radius: 12px;
+}
