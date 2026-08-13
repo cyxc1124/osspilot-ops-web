@@ -29,6 +29,17 @@ npm run dev
 docker build -t osspilot-ops-web .
 ```
 
+CI 推送到 `ghcr.io/cyxc1124/osspilot-ops-web`：
+
+- `v*` 发版；`latest` 只跟最后一次 `v*`
+- `develop` / `main` 跟对应分支
+- `sha-*` 钉 commit
+- PR 只构建不推送
+
+```bash
+docker pull ghcr.io/cyxc1124/osspilot-ops-web:develop
+```
+
 ## 许可
 
 AGPL-3.0-only
