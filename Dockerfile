@@ -1,5 +1,5 @@
 # osspilot-ops-web — 构建上下文为仓库根目录
-FROM --platform=$BUILDPLATFORM node:20-alpine AS builder
+FROM --platform=$BUILDPLATFORM node:26-alpine AS builder
 
 ARG GIT_TAG=""
 ARG GIT_COMMIT=""
