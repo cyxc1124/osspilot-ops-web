@@ -7,7 +7,6 @@ import {
   InputNumber,
   Modal,
   Popconfirm,
-  Radio,
   Select,
   Space,
   Table,
@@ -27,6 +26,7 @@ import { listRegions } from '../api/regions';
 import { ApiError } from '../api/client';
 import type { TenantUserResponse } from '../api/types';
 import AccountBucketsDrawer from '../components/accounts/AccountBucketsDrawer';
+import CreatePasswordFields from '../components/accounts/CreatePasswordFields';
 import { useT } from '../i18n';
 import { useAuthStore } from '../stores/authStore';
 import { formatBytes, formatDateTime, userStatusLabel } from '../utils/format';
@@ -41,7 +41,8 @@ interface CreateForm {
   phone?: string;
   quota_gb?: number;
   storage_region_id?: number;
-  must_change_password?: boolean;
+  skip_must_change?: boolean;
+  confirm_password?: string;
 }
 
 interface EditForm {
@@ -90,7 +91,8 @@ export default function TenantAccountsPage() {
         phone: values.phone ?? null,
         quota_bytes: values.quota_gb != null ? Math.round(values.quota_gb * 1024 ** 3) : null,
         storage_region_id: values.storage_region_id ?? null,
-        must_change_password: values.must_change_password ?? true,
+        must_change_password: !values.skip_must_change,
+        confirm_password: values.skip_must_change ? values.confirm_password : undefined,
       }),
     onSuccess: () => {
       message.success(t('tenantAccounts.created'));
@@ -246,7 +248,7 @@ export default function TenantAccountsPage() {
         <Form
           form={createForm}
           layout="vertical"
-          initialValues={{ must_change_password: true }}
+          initialValues={{ skip_must_change: false }}
           onFinish={(v) => createMutation.mutate(v)}
         >
           <Form.Item
@@ -256,26 +258,7 @@ export default function TenantAccountsPage() {
           >
             <Input placeholder={t('tenantAccounts.usernamePlaceholder')} />
           </Form.Item>
-          <Form.Item
-            name="password"
-            label={t('users.initialPassword')}
-            rules={[
-              { required: true, message: t('users.passwordRequired') },
-              { min: 8, message: t('users.passwordMinLength') },
-            ]}
-          >
-            <Input.Password placeholder={t('users.passwordMinLength')} />
-          </Form.Item>
-          <Form.Item
-            name="must_change_password"
-            label={t('users.mustChangePassword')}
-            rules={[{ required: true, message: t('users.mustChangePasswordRequired') }]}
-          >
-            <Radio.Group>
-              <Radio value={true}>{t('users.mustChangeRequired')}</Radio>
-              <Radio value={false}>{t('users.mustChangeOptional')}</Radio>
-            </Radio.Group>
-          </Form.Item>
+          <CreatePasswordFields />
           <Form.Item name="display_name" label={t('users.displayName')}>
             <Input placeholder={t('tenantAccounts.displayNamePlaceholder')} />
           </Form.Item>

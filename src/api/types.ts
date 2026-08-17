@@ -216,6 +216,7 @@ export interface UserCreateRequest {
   phone?: string | null;
   ops_roles?: string[];
   must_change_password?: boolean;
+  confirm_password?: string;
 }
 
 export interface UserUpdateRequest {
@@ -259,6 +260,7 @@ export interface TenantUserCreateRequest {
   daily_upload_bytes?: number | null;
   storage_region_id?: number | null;
   must_change_password?: boolean;
+  confirm_password?: string;
 }
 
 export interface TenantUserUpdateRequest {
