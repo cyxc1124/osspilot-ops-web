@@ -77,6 +77,8 @@ export const zhCN = {
     passwordMinLength: '至少 8 位',
     passwordChanged: '密码已修改',
     changeFailed: '修改密码失败',
+    mustChangeTitle: '请先修改密码',
+    mustChangeHint: '当前账号必须先修改密码，才能继续使用控制台。',
   },
   nav: {
     brand: 'OssPilot 运营',

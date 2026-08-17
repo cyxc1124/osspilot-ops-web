@@ -13,12 +13,14 @@ export interface UserBrief {
   username: string;
   display_name: string | null;
   roles: string[];
+  must_change_password?: boolean;
 }
 
 export interface LoginResponse {
   access_token: string;
   token_type: string;
   expires_in: number;
+  must_change_password: boolean;
   user: UserBrief;
 }
 
@@ -32,6 +34,7 @@ export interface MeResponse {
   portal: 'ops';
   roles: string[];
   last_login_at: string | null;
+  must_change_password: boolean;
 }
 
 export interface TenantSummary {
