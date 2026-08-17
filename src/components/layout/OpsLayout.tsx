@@ -10,6 +10,7 @@ import {
   LogoutOutlined,
   SettingOutlined,
   FileProtectOutlined,
+  InfoCircleOutlined,
   SafetyOutlined,
   TeamOutlined,
   UserOutlined,
@@ -46,6 +47,7 @@ const MENU_DEFS: MenuDef[] = [
   { key: '/rgw', labelKey: 'nav.rgw', icon: <CloudServerOutlined />, readOnlyForOperator: true },
   { key: '/alerts', labelKey: 'nav.alerts', icon: <BellOutlined />, readOnlyForOperator: true },
   { key: '/audit', labelKey: 'nav.audit', icon: <AuditOutlined />, readOnlyForOperator: true },
+  { key: '/about', labelKey: 'nav.about', icon: <InfoCircleOutlined /> },
 ];
 
 export default function OpsLayout() {

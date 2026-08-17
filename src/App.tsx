@@ -17,6 +17,7 @@ import PermissionsPage from './pages/PermissionsPage';
 import BucketsPage from './pages/BucketsPage';
 import TenantAccountsPage from './pages/TenantAccountsPage';
 import UsersPage from './pages/UsersPage';
+import AboutPage from './pages/AboutPage';
 
 export default function App() {
   return (
@@ -83,6 +84,7 @@ export default function App() {
           <Route path="rgw" element={<RgwPage />} />
           <Route path="alerts" element={<AlertsPage />} />
           <Route path="audit" element={<AuditPage />} />
+          <Route path="about" element={<AboutPage />} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
