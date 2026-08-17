@@ -9,6 +9,8 @@ import { useAuthStore } from '../../stores/authStore';
 interface ChangePasswordModalProps {
   open: boolean;
   onClose: () => void;
+  onChanged?: () => void | Promise<void>;
+  forced?: boolean;
 }
 
 interface FormValues {
@@ -17,7 +19,12 @@ interface FormValues {
   confirm_password: string;
 }
 
-export default function ChangePasswordModal({ open, onClose }: ChangePasswordModalProps) {
+export default function ChangePasswordModal({
+  open,
+  onClose,
+  onChanged,
+  forced = false,
+}: ChangePasswordModalProps) {
   const t = useT();
   const [form] = Form.useForm<FormValues>();
   const token = useAuthStore((s) => s.token);
@@ -38,8 +45,9 @@ export default function ChangePasswordModal({ open, onClose }: ChangePasswordMod
         new_password: values.new_password,
       });
     },
-    onSuccess: () => {
+    onSuccess: async () => {
       message.success(t('account.passwordChanged'));
+      await onChanged?.();
       onClose();
     },
     onError: (err: Error) => {
@@ -49,13 +57,18 @@ export default function ChangePasswordModal({ open, onClose }: ChangePasswordMod
 
   return (
     <Modal
-      title={t('account.changePassword')}
+      title={forced ? t('account.mustChangeTitle') : t('account.changePassword')}
       open={open}
-      onCancel={onClose}
+      onCancel={forced ? undefined : onClose}
       onOk={() => form.submit()}
       confirmLoading={mutation.isPending}
       destroyOnClose
+      closable={!forced}
+      maskClosable={!forced}
+      keyboard={!forced}
+      cancelButtonProps={forced ? { style: { display: 'none' } } : undefined}
     >
+      {forced ? <p>{t('account.mustChangeHint')}</p> : null}
       <Form
         form={form}
         layout="vertical"

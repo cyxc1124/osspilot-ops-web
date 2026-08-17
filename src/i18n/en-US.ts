@@ -77,6 +77,8 @@ export const enUS = {
     passwordMinLength: 'At least 8 characters',
     passwordChanged: 'Password changed',
     changeFailed: 'Failed to change password',
+    mustChangeTitle: 'Change your password',
+    mustChangeHint: 'You must change your password before using the console.',
   },
   nav: {
     brand: 'OssPilot Ops',
