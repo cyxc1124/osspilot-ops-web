@@ -1,10 +1,9 @@
 import { useEffect } from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { Alert, Button, Spin } from 'antd';
+import { Spin } from 'antd';
 import { fetchMe, logout } from '../api/auth';
 import ChangePasswordModal from './account/ChangePasswordModal';
-import LocaleSwitcher from './LocaleSwitcher';
 import { useT } from '../i18n';
 import { useAuthStore } from '../stores/authStore';
 
@@ -55,31 +54,29 @@ export default function ProtectedRoute({ children, requireAdmin = false }: Prote
 
   if (data?.must_change_password) {
     return (
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 16, padding: 120 }}>
-        <LocaleSwitcher />
-        <Alert type="info" showIcon message={t('account.mustChangeHint')} />
-        <Button
-          onClick={() => {
-            if (token) {
-              void logout(token).finally(() => clearAuth());
-              return;
-            }
-            clearAuth();
-          }}
-        >
-          {t('nav.logout')}
-        </Button>
-        <ChangePasswordModal
-          open
-          forced
-          onClose={() => undefined}
-          onChanged={async () => {
-            const me = await fetchMe(token);
-            setUser(me);
-            queryClient.setQueryData(['me', token], me);
-          }}
-        />
-      </div>
+      <ChangePasswordModal
+        open
+        forced
+        onClose={() => undefined}
+        onLogout={() => {
+          if (token) {
+            void logout(token).finally(() => clearAuth());
+            return;
+          }
+          clearAuth();
+        }}
+        onChanged={() => {
+          const next = { ...data, must_change_password: false };
+          setUser(next);
+          queryClient.setQueryData(['me', token], next);
+          void fetchMe(token)
+            .then((me) => {
+              setUser(me);
+              queryClient.setQueryData(['me', token], me);
+            })
+            .catch(() => undefined);
+        }}
+      />
     );
   }
 
