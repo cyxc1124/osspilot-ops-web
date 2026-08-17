@@ -7,6 +7,7 @@ import {
   InputNumber,
   Modal,
   Popconfirm,
+  Radio,
   Select,
   Space,
   Table,
@@ -40,6 +41,7 @@ interface CreateForm {
   phone?: string;
   quota_gb?: number;
   storage_region_id?: number;
+  must_change_password?: boolean;
 }
 
 interface EditForm {
@@ -88,6 +90,7 @@ export default function TenantAccountsPage() {
         phone: values.phone ?? null,
         quota_bytes: values.quota_gb != null ? Math.round(values.quota_gb * 1024 ** 3) : null,
         storage_region_id: values.storage_region_id ?? null,
+        must_change_password: values.must_change_password ?? true,
       }),
     onSuccess: () => {
       message.success(t('tenantAccounts.created'));
@@ -240,7 +243,12 @@ export default function TenantAccountsPage() {
         destroyOnClose
         width={560}
       >
-        <Form form={createForm} layout="vertical" onFinish={(v) => createMutation.mutate(v)}>
+        <Form
+          form={createForm}
+          layout="vertical"
+          initialValues={{ must_change_password: true }}
+          onFinish={(v) => createMutation.mutate(v)}
+        >
           <Form.Item
             name="username"
             label={t('users.username')}
@@ -257,6 +265,16 @@ export default function TenantAccountsPage() {
             ]}
           >
             <Input.Password placeholder={t('users.passwordMinLength')} />
+          </Form.Item>
+          <Form.Item
+            name="must_change_password"
+            label={t('users.mustChangePassword')}
+            rules={[{ required: true, message: t('users.mustChangePasswordRequired') }]}
+          >
+            <Radio.Group>
+              <Radio value={true}>{t('users.mustChangeRequired')}</Radio>
+              <Radio value={false}>{t('users.mustChangeOptional')}</Radio>
+            </Radio.Group>
           </Form.Item>
           <Form.Item name="display_name" label={t('users.displayName')}>
             <Input placeholder={t('tenantAccounts.displayNamePlaceholder')} />

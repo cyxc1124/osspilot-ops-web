@@ -7,6 +7,7 @@ import {
   Input,
   Modal,
   Popconfirm,
+  Radio,
   Select,
   Space,
   Table,
@@ -39,6 +40,7 @@ interface OpsUserFormValues {
   phone?: string;
   status?: string;
   ops_roles?: string[];
+  must_change_password?: boolean;
 }
 
 export default function UsersPage() {
@@ -85,6 +87,7 @@ export default function UsersPage() {
         email: values.email ?? null,
         phone: values.phone ?? null,
         ops_roles: values.ops_roles ?? [],
+        must_change_password: values.must_change_password ?? false,
       });
     },
     onSuccess: (_result, { userId }) => {
@@ -118,7 +121,7 @@ export default function UsersPage() {
   const openCreate = () => {
     setEditingUser(null);
     form.resetFields();
-    form.setFieldsValue({ ops_roles: [] });
+    form.setFieldsValue({ ops_roles: [], must_change_password: false });
     setModalOpen(true);
   };
 
@@ -240,6 +243,16 @@ export default function UsersPage() {
                   ]}
                 >
                   <Input.Password />
+                </Form.Item>
+                <Form.Item
+                  name="must_change_password"
+                  label={t('users.mustChangePassword')}
+                  rules={[{ required: true, message: t('users.mustChangePasswordRequired') }]}
+                >
+                  <Radio.Group>
+                    <Radio value={true}>{t('users.mustChangeRequired')}</Radio>
+                    <Radio value={false}>{t('users.mustChangeOptional')}</Radio>
+                  </Radio.Group>
                 </Form.Item>
               </>
             ) : (
