@@ -95,7 +95,7 @@ export const zhCN = {
   },
   login: {
     title: 'OssPilot 运营控制台',
-    subtitle: '平台管理员与运维人员登录（portal=ops）',
+    subtitle: '平台管理员与运维人员登录',
     username: '用户名',
     password: '密码',
     usernameRequired: '请输入用户名',
