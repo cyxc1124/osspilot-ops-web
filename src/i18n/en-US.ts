@@ -95,7 +95,7 @@ export const enUS = {
   },
   login: {
     title: 'OssPilot Operations Console',
-    subtitle: 'Sign in as platform admin or operator (portal=ops)',
+    subtitle: 'Sign in as platform admin or operator',
     username: 'Username',
     password: 'Password',
     usernameRequired: 'Please enter username',
