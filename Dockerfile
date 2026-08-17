@@ -18,6 +18,13 @@ USER 0
 
 ARG GIT_TAG=""
 ARG GIT_COMMIT=""
+ARG GIT_BRANCH=""
+ARG BUILD_TIME=""
+
+ENV GIT_TAG=$GIT_TAG \
+    GIT_COMMIT=$GIT_COMMIT \
+    GIT_BRANCH=$GIT_BRANCH \
+    BUILD_TIME=$BUILD_TIME
 
 LABEL org.opencontainers.image.source=https://github.com/cyxc1124/osspilot-ops-web
 LABEL org.opencontainers.image.description="OssPilot 运营端 Web"

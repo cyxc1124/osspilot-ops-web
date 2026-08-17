@@ -710,7 +710,8 @@ export const zhCN = {
   },
   about: {
     title: '关于',
-    subtitle: '当前运行的六个服务仓版本，并与 GitHub 最新发行或分支头比对。',
+    subtitle: '从各运行中的组件读取版本，并与 GitHub 最新发行或分支头比对。',
+    unreachable: '无法读取',
     component: '组件',
     running: '运行版本',
     githubLatest: 'GitHub 最新',

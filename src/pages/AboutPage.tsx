@@ -69,12 +69,15 @@ export default function AboutPage() {
     {
       title: t('about.running'),
       dataIndex: 'running_version',
-      render: (version: string, row) => (
-        <Space>
-          <Text code>{version}</Text>
-          <Tag color={channelColor(row.channel)}>{t(`about.channel.${row.channel}`)}</Tag>
-        </Space>
-      ),
+      render: (version: string, row) =>
+        row.reachable ? (
+          <Space>
+            <Text code>{version}</Text>
+            <Tag color={channelColor(row.channel)}>{t(`about.channel.${row.channel}`)}</Tag>
+          </Space>
+        ) : (
+          <Text type="secondary">{t('about.unreachable')}</Text>
+        ),
     },
     {
       title: t('about.githubLatest'),

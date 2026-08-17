@@ -722,7 +722,8 @@ export const enUS = {
   },
   about: {
     title: 'About',
-    subtitle: 'Running versions of the six service repos, compared with the latest GitHub release or branch tip.',
+    subtitle: 'Versions reported by each running component, compared with the latest GitHub release or branch tip.',
+    unreachable: 'Unreachable',
     component: 'Component',
     running: 'Running',
     githubLatest: 'GitHub latest',

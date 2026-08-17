@@ -20,6 +20,7 @@ export interface AboutComponent {
   update_available: boolean | null;
   update_url: string | null;
   compare_status: AboutCompareStatus | string;
+  reachable: boolean;
 }
 
 export interface AboutResponse {
