@@ -21,6 +21,9 @@ interface FormValues {
   confirm_password: string;
 }
 
+// ponytail: antd Input.Password 显隐按钮默认 tabIndex=0，会截走标签点击和 Tab；点图标仍可用。
+const passwordToggle = { tabIndex: -1 } as const;
+
 export default function ChangePasswordModal({
   open,
   onClose,
@@ -89,7 +92,7 @@ export default function ChangePasswordModal({
           label={t('account.currentPassword')}
           rules={[{ required: true, message: t('account.currentPasswordRequired') }]}
         >
-          <Input.Password autoComplete="current-password" />
+          <Input.Password autoComplete="current-password" visibilityToggle={passwordToggle} />
         </Form.Item>
         <Form.Item
           name="new_password"
@@ -99,7 +102,7 @@ export default function ChangePasswordModal({
             { min: 8, message: t('account.passwordMinLength') },
           ]}
         >
-          <Input.Password autoComplete="new-password" />
+          <Input.Password autoComplete="new-password" visibilityToggle={passwordToggle} />
         </Form.Item>
         <Form.Item
           name="confirm_password"
@@ -117,7 +120,7 @@ export default function ChangePasswordModal({
             }),
           ]}
         >
-          <Input.Password autoComplete="new-password" />
+          <Input.Password autoComplete="new-password" visibilityToggle={passwordToggle} />
         </Form.Item>
       </Form>
     </Modal>
