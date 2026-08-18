@@ -329,6 +329,8 @@ export const enUS = {
     createModalTitle: 'Create user',
     usernameRequired: 'Please enter username',
     initialPassword: 'Initial password',
+    skipMustChange: 'Skip password change',
+    showPassword: 'Show password',
     passwordRequired: 'Please enter password',
     passwordMinLength: 'At least 8 characters',
     email: 'Email',

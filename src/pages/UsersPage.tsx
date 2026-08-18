@@ -27,6 +27,7 @@ import type { UserResponse } from '../api/types';
 import { useT } from '../i18n';
 import { useAuthStore } from '../stores/authStore';
 import { formatDateTime, userStatusLabel } from '../utils/format';
+import CreatePasswordFields from '../components/accounts/CreatePasswordFields';
 import { getOpsRoleOptions, opsRoleLabel } from '../utils/roles';
 
 const { Title } = Typography;
@@ -39,6 +40,8 @@ interface OpsUserFormValues {
   phone?: string;
   status?: string;
   ops_roles?: string[];
+  skip_must_change?: boolean;
+  confirm_password?: string;
 }
 
 export default function UsersPage() {
@@ -85,6 +88,8 @@ export default function UsersPage() {
         email: values.email ?? null,
         phone: values.phone ?? null,
         ops_roles: values.ops_roles ?? [],
+        must_change_password: !values.skip_must_change,
+        confirm_password: values.skip_must_change ? values.confirm_password : undefined,
       });
     },
     onSuccess: (_result, { userId }) => {
@@ -118,7 +123,7 @@ export default function UsersPage() {
   const openCreate = () => {
     setEditingUser(null);
     form.resetFields();
-    form.setFieldsValue({ ops_roles: [] });
+    form.setFieldsValue({ ops_roles: [], skip_must_change: false });
     setModalOpen(true);
   };
 
@@ -219,6 +224,7 @@ export default function UsersPage() {
         <Form
           form={form}
           layout="vertical"
+          initialValues={{ skip_must_change: false }}
           onFinish={(values) => saveMutation.mutate({ userId: editingUser?.id, values })}
         >
           <Card size="small" title={t('users.basicInfoSection')} style={{ marginBottom: 16 }}>
@@ -231,16 +237,7 @@ export default function UsersPage() {
                 >
                   <Input />
                 </Form.Item>
-                <Form.Item
-                  name="password"
-                  label={t('users.initialPassword')}
-                  rules={[
-                    { required: true, message: t('users.passwordRequired') },
-                    { min: 8, message: t('users.passwordMinLength') },
-                  ]}
-                >
-                  <Input.Password />
-                </Form.Item>
+                <CreatePasswordFields />
               </>
             ) : (
               <Form.Item name="status" label={t('common.status')}>
