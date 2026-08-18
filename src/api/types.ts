@@ -13,12 +13,14 @@ export interface UserBrief {
   username: string;
   display_name: string | null;
   roles: string[];
+  must_change_password?: boolean;
 }
 
 export interface LoginResponse {
   access_token: string;
   token_type: string;
   expires_in: number;
+  must_change_password: boolean;
   user: UserBrief;
 }
 
@@ -32,6 +34,7 @@ export interface MeResponse {
   portal: 'ops';
   roles: string[];
   last_login_at: string | null;
+  must_change_password: boolean;
 }
 
 export interface TenantSummary {
@@ -212,6 +215,8 @@ export interface UserCreateRequest {
   email?: string | null;
   phone?: string | null;
   ops_roles?: string[];
+  must_change_password?: boolean;
+  confirm_password?: string;
 }
 
 export interface UserUpdateRequest {
@@ -254,6 +259,8 @@ export interface TenantUserCreateRequest {
   object_limit?: number | null;
   daily_upload_bytes?: number | null;
   storage_region_id?: number | null;
+  must_change_password?: boolean;
+  confirm_password?: string;
 }
 
 export interface TenantUserUpdateRequest {

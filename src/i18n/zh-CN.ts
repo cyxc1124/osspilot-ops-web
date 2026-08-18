@@ -77,6 +77,8 @@ export const zhCN = {
     passwordMinLength: '至少 8 位',
     passwordChanged: '密码已修改',
     changeFailed: '修改密码失败',
+    mustChangeTitle: '请先修改密码',
+    mustChangeHint: '当前账号必须先修改密码，才能继续使用控制台。',
   },
   nav: {
     brand: 'OssPilot 运营',
@@ -95,7 +97,7 @@ export const zhCN = {
   },
   login: {
     title: 'OssPilot 运营控制台',
-    subtitle: '平台管理员与运维人员登录（portal=ops）',
+    subtitle: '平台管理员与运维人员登录',
     username: '用户名',
     password: '密码',
     usernameRequired: '请输入用户名',
@@ -319,6 +321,8 @@ export const zhCN = {
     createModalTitle: '创建用户',
     usernameRequired: '请输入用户名',
     initialPassword: '初始密码',
+    skipMustChange: '不需要改密码',
+    showPassword: '显示密码',
     passwordRequired: '请输入密码',
     passwordMinLength: '至少 8 位',
     email: '邮箱',

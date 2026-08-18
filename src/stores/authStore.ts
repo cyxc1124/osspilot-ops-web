@@ -23,6 +23,7 @@ export const useAuthStore = create<AuthState>()(
             username: user.username,
             display_name: user.display_name,
             roles: user.roles,
+            must_change_password: user.must_change_password,
           },
         }),
       clearAuth: () => set({ token: null, user: null }),

@@ -77,6 +77,8 @@ export const enUS = {
     passwordMinLength: 'At least 8 characters',
     passwordChanged: 'Password changed',
     changeFailed: 'Failed to change password',
+    mustChangeTitle: 'Change your password',
+    mustChangeHint: 'You must change your password before using the console.',
   },
   nav: {
     brand: 'OssPilot Ops',
@@ -95,7 +97,7 @@ export const enUS = {
   },
   login: {
     title: 'OssPilot Operations Console',
-    subtitle: 'Sign in as platform admin or operator (portal=ops)',
+    subtitle: 'Sign in as platform admin or operator',
     username: 'Username',
     password: 'Password',
     usernameRequired: 'Please enter username',
@@ -327,6 +329,8 @@ export const enUS = {
     createModalTitle: 'Create user',
     usernameRequired: 'Please enter username',
     initialPassword: 'Initial password',
+    skipMustChange: 'Skip password change',
+    showPassword: 'Show password',
     passwordRequired: 'Please enter password',
     passwordMinLength: 'At least 8 characters',
     email: 'Email',
